@@ -41,10 +41,8 @@ const removeContact = (contactId) => {
       return;
     }
     const obj = JSON.parse(data);
-    obj.filter((element) => {
-      const res = obj.filter((el) => el.id != contactId);
-      console.table(res);
-    });
+    const res = obj.filter((el) => el.id != contactId);
+    console.table(res);
   });
 };
 
