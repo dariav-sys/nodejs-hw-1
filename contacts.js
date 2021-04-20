@@ -10,7 +10,8 @@ const listContacts = () => {
       console.error(err);
       return;
     }
-    console.log(data);
+    const contacts = JSON.parse(data);
+    console.table(contacts);
   });
 };
 
@@ -25,7 +26,7 @@ const getContactById = (contactId) => {
     const obj = JSON.parse(data);
     obj.forEach((element) => {
       if (element.id === contactId) {
-        console.log(element);
+        console.table(element);
       }
     });
   });
@@ -42,7 +43,7 @@ const removeContact = (contactId) => {
     const obj = JSON.parse(data);
     obj.filter((element) => {
       const res = obj.filter((el) => el.id != contactId);
-      console.log(res);
+      console.table(res);
     });
   });
 };
@@ -61,7 +62,7 @@ const addContact = (name, email, phone) => {
       email: email,
       phone: phone,
     });
-    const newData = JSON.stringify(obj, null, 2);
+    const newData = JSON.stringify(obj);
     fs.writeFile(file, newData, "utf8", (err, data) => {
       if (err) {
         console.error(err);
@@ -74,8 +75,8 @@ const addContact = (name, email, phone) => {
 // addContact("ania", "ania@gmail.com", "+351907893747");
 
 module.exports = {
-    listContacts,
-    getContactById,
-    removeContact,
-    addContact
-}
+  listContacts,
+  getContactById,
+  removeContact,
+  addContact,
+};
